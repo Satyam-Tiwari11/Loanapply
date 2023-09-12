@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
+import './styles.css'; // Import the CSS file
 
 function EmployeeForm() {
-  // State to store form values
   const [employeeId, setEmployeeId] = useState('');
   const [itemCategory, setItemCategory] = useState('');
   const [itemDescription, setItemDescription] = useState('');
   const [itemValue, setItemValue] = useState('');
   const [itemMake, setItemMake] = useState('');
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // You can send the form data to your server or perform other actions here
-    // For now, we'll just log the form data
     console.log({
       employeeId,
       itemCategory,
@@ -24,63 +20,68 @@ function EmployeeForm() {
   };
 
   return (
-    <div>
-      <h1>Employee Information Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="employeeId">Employee ID:</label>
-          <input
-            type="text"
-            id="employeeId"
-            value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="itemCategory">Item Category:</label>
-          <select
-            id="itemCategory"
-            value={itemCategory}
-            onChange={(e) => setItemCategory(e.target.value)}
-          >
-            <option value="">Select category...</option>
-            <option value="Category 1">Category 1</option>
-            <option value="Category 2">Category 2</option>
-            {/* Add more category options as needed */}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="itemDescription">Item Description:</label>
-          <textarea
-            id="itemDescription"
-            value={itemDescription}
-            onChange={(e) => setItemDescription(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="itemValue">Item Value:</label>
-          <input
-            type="text"
-            id="itemValue"
-            value={itemValue}
-            onChange={(e) => setItemValue(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="itemMake">Item Make:</label>
-          <select
-            id="itemMake"
-            value={itemMake}
-            onChange={(e) => setItemMake(e.target.value)}
-          >
-            <option value="">Select make...</option>
-            <option value="Make 1">Make 1</option>
-            <option value="Make 2">Make 2</option>
-            {/* Add more make options as needed */}
-          </select>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+    <div className="container">
+      <div className="form-container">
+        <h1 className="mb-4">Employee Information Form</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="employeeId">Employee ID:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="employeeId"
+              value={employeeId}
+              onChange={(e) => setEmployeeId(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="itemCategory">Item Category:</label>
+            <select
+              className="form-control"
+              id="itemCategory"
+              value={itemCategory}
+              onChange={(e) => setItemCategory(e.target.value)}
+            >
+              <option value="">Select category...</option>
+              <option value="Category 1">Category 1</option>
+              <option value="Category 2">Category 2</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="itemDescription">Item Description:</label>
+            <textarea
+              className="form-control"
+              id="itemDescription"
+              value={itemDescription}
+              onChange={(e) => setItemDescription(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="itemValue">Item Value:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="itemValue"
+              value={itemValue}
+              onChange={(e) => setItemValue(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="itemMake">Item Make:</label>
+            <select
+              className="form-control"
+              id="itemMake"
+              value={itemMake}
+              onChange={(e) => setItemMake(e.target.value)}
+            >
+              <option value="">Select make...</option>
+              <option value="Make 1">Make 1</option>
+              <option value="Make 2">Make 2</option>
+            </select>
+          </div>
+          <button type="submit" className="btn btn-submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -53,3 +53,41 @@ const PurchasedItems = () => {
 };
 
 export default PurchasedItems;
+
+
+
+
+
+/* Styles for the main container */
+.container {
+  margin-top: 20px;
+}
+
+/* Centered heading */
+.text-center {
+  text-align: center;
+}
+
+/* Subheadings for Employee ID, Designation, and Department */
+.col-md-4 h4 {
+  text-align: center;
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+/* Add more custom styling as needed */

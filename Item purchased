@@ -1,31 +1,33 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
 
-class ItemsPurchased extends Component {
-  state = {
-    items: [],
-  };
+const PurchasedItems = () => {
+  const [items, setItems] = useState([]);
 
-  componentDidMount() {
-    // Get the items from the server.
-    fetch("/api/items")
+  useEffect(() => {
+    // Replace 'example-api.com' with the actual API endpoint
+    fetch('https://example-api.com/items')
       .then((response) => response.json())
-      .then((items) => {
-        this.setState({ items });
-      });
-  }
+      .then((data) => setItems(data));
+  }, []);
 
-  render() {
-    const { items } = this.state;
-
-    return (
-      <div>
-        <h1>Item Purchased</h1>
-        <table>
+  return (
+    <div className="container mt-4">
+      <h1 className="text-center">Item Purchased</h1>
+      <div className="row mt-4">
+        <div className="col-md-4">
+          <h4>Employee ID</h4>
+        </div>
+        <div className="col-md-4">
+          <h4>Designation</h4>
+        </div>
+        <div className="col-md-4">
+          <h4>Department</h4>
+        </div>
+      </div>
+      <div className="mt-4">
+        <table className="table table-bordered">
           <thead>
             <tr>
-              <th>Employee ID</th>
-              <th>Designation</th>
-              <th>Department</th>
               <th>Issue ID</th>
               <th>Item Description</th>
               <th>Item Make</th>
@@ -35,22 +37,19 @@ class ItemsPurchased extends Component {
           </thead>
           <tbody>
             {items.map((item) => (
-              <tr>
-                <td>{item.employeeId}</td>
-                <td>{item.designation}</td>
-                <td>{item.department}</td>
+              <tr key={item.issueId}>
                 <td>{item.issueId}</td>
-                <td>{item.itemDescription}</td>
-                <td>{item.itemMake}</td>
-                <td>{item.itemCategory}</td>
-                <td>{item.itemValuation}</td>
+                <td>{item.description}</td>
+                <td>{item.make}</td>
+                <td>{item.category}</td>
+                <td>{item.valuation}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default ItemsPurchased;
+export default PurchasedItems;

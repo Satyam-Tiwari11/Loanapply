@@ -1,55 +1,65 @@
-
-
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [employeeData, setEmployeeData] = useState([]);
-  const [itemData, setItemData] = useState([]);
+  const [employeeId, setEmployeeId] = useState('');
+  const [designation, setDesignation] = useState('');
+  const [department, setDepartment] = useState('');
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    // Fetch employee data from the API (example.com in this case)
-    fetch('https://example.com/employees')
+    // Fetch data from your API (example.com) and update tableData state
+    // Replace this with your actual API fetch logic
+    fetch('https://example.com/api/data')
       .then((response) => response.json())
-      .then((data) => setEmployeeData(data));
-
-    // Fetch item data from the API (example.com in this case)
-    fetch('https://example.com/items')
-      .then((response) => response.json())
-      .then((data) => setItemData(data));
+      .then((data) => setTableData(data));
   }, []);
 
   return (
-    <div className="container mt-5">
+    <div className="container">
       <h1>Item Purchased</h1>
-
-      {/* Employee Details */}
-      <div className="row mt-4">
-        {employeeData.map((employee) => (
-          <div className="col-md-4" key={employee.id}>
-            <div className="card mb-4">
-              <div className="card-body">
-                <h5 className="card-title">Employee ID</h5>
-                <p className="card-text">{employee.employeeId}</p>
-              </div>
-            </div>
-            <div className="card mb-4">
-              <div className="card-body">
-                <h5 className="card-title">Designation</h5>
-                <p className="card-text">{employee.designation}</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Department</h5>
-                <p className="card-text">{employee.department}</p>
-              </div>
-            </div>
+      <div className="row">
+        <div className="col">
+          <div className="form-group">
+            <label htmlFor="employeeId">Employee ID</label>
+            <input
+              type="text"
+              className="form-control"
+              id="employeeId"
+              placeholder="Enter Employee ID"
+              value={employeeId}
+              onChange={(e) => setEmployeeId(e.target.value)}
+            />
           </div>
-        ))}
+        </div>
+        <div className="col">
+          <div className="form-group">
+            <label htmlFor="designation">Designation</label>
+            <input
+              type="text"
+              className="form-control"
+              id="designation"
+              placeholder="Enter Designation"
+              value={designation}
+              onChange={(e) => setDesignation(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="col">
+          <div className="form-group">
+            <label htmlFor="department">Department</label>
+            <input
+              type="text"
+              className="form-control"
+              id="department"
+              placeholder="Enter Department"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
-
-      {/* Table-like Structure */}
-      <table className="table mt-5">
+      <table className="table">
         <thead>
           <tr>
             <th>Issue ID</th>
@@ -60,8 +70,8 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {itemData.map((item) => (
-            <tr key={item.id}>
+          {tableData.map((item) => (
+            <tr key={item.issueId}>
               <td>{item.issueId}</td>
               <td>{item.itemDescription}</td>
               <td>{item.itemMake}</td>
@@ -76,6 +86,3 @@ function App() {
 }
 
 export default App;
-
-
-export default PurchasedItemsTable;
